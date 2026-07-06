@@ -14,7 +14,7 @@ class TaskController extends Controller
     {
         $tasks = auth()->user()->tasks()->latest('created_at')->paginate(10);
 
-        return view('dashboard', compact('tasks'));
+        return view('tasks.index', compact('tasks'));
     }
 
     /**
