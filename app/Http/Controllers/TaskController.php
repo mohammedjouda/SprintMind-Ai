@@ -12,11 +12,44 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = auth()->user()->tasks()->latest('created_at')->paginate(10);
+        // 1. جلب المهام الأساسية للجدول (مع الترقيم)
+        // يفضل جلب مهام المستخدم الحالي فقط: auth()->user()->tasks()->latest()->paginate(10);
+        $tasks = auth()->user()->tasks()->latest()->paginate(10);
 
-        return view('tasks.index', compact('tasks'));
+        // 2. حساب إحصائيات الإنجاز العام
+        $totalTasks = Task::count();
+        $completedTasks = Task::query()->where('status', 'completed')->count();
+        $pendingTasks = $totalTasks - $completedTasks;
+        $completionRate = $totalTasks > 0 ? round(($completedTasks / $totalTasks) * 100) : 0;
+
+        // 3. إحصائيات الضرورة القصوى
+        $highTasksTotal = Task::query()->where('priority', 'high')->count();
+        $highTasksDone = Task::query()->where('priority', 'high')->where('status', 'completed')->count();
+        $highTasksPending = $highTasksTotal - $highTasksDone;
+        $highCompletionRate = $highTasksTotal > 0 ? round(($highTasksDone / $highTasksTotal) * 100) : 0;
+
+        // 4. إحصائيات الذكاء الاصطناعي (تأكد من إضافة هذه الحقول لاحقاً في الـ Migration)
+        // إذا لم تقم بإنشائها بعد في الداتا بيز، يمكنك وضع قيم وهمية مؤقتاً
+        $aiTasksTotal = Task::query()->where('is_ai_generated', true)->count();
+
+        // جمع نقاط الجهد للمهام المكتملة
+        $storyPointsBurned = Task::query()->where('status', 'completed')->sum('story_points');
+
+        // 5. إرسال كل هذه المتغيرات النظيفة إلى ملف الـ Blade
+        return view('tasks.index', compact(
+            'tasks',
+            'totalTasks',
+            'completedTasks',
+            'pendingTasks',
+            'completionRate',
+            'highTasksTotal',
+            'highTasksDone',
+            'highTasksPending',
+            'highCompletionRate',
+            'aiTasksTotal',
+            'storyPointsBurned'
+        ));
     }
-
     /**
      * Show the form for creating a new resource.
      */
@@ -43,11 +76,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
-    {
-
-
-    }
+    public function show(string $id) {}
 
     /**
      * Show the form for editing the specified resource.
@@ -70,7 +99,7 @@ class TaskController extends Controller
         ]);
 
         $task = Task::find($id);
-        $task->update($request->all()+['user_id'=> auth()->id()]);
+        $task->update($request->all() + ['user_id' => auth()->id()]);
 
         return redirect()->route('tasks.index')->with('success', 'Task updated successfully!');
     }

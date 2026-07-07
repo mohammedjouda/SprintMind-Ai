@@ -12,6 +12,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // السطر الجديد المعرّف للمسار [tasks.toggle]
     Route::patch('/tasks/{task}/toggle', [TaskController::class, 'toggleComplete'])->name('tasks.toggle');
+    Route::get('/projects', function () {
+        return view('projects');
+    })->name('projects');
 
     Route::resource('tasks', TaskController::class);
 

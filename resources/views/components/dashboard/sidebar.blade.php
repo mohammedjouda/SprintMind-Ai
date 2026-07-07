@@ -35,7 +35,7 @@
                 {{ auth()->user()->tasks()->count() }}
             </span>
         </a>
-        <a href="#"
+        <a href="{{route('projects')}}"
             class="flex items-center gap-3.5 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-xl transition-all font-medium">
             <span class="material-symbols-outlined">folder</span>
             <span class="text-sm">المشاريع</span>
