@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('title');
             $table->text('description')->nullable();
 
-            $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');
+            $table->enum('status', ['todo', 'in_progress', 'review', 'completed'])->default('todo');
             $table->enum('priority', ['low', 'medium', 'high'])->default('medium');
 
             $table->integer('story_points')->default(0); // مقياس الجهد
