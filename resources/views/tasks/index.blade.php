@@ -98,7 +98,7 @@
 
     </div>
 
-    <div x-data="{ filterTab: 'all' }" class="bg-white rounded-3xl border border-outline-variant/60 card-elevation overflow-hidden">
+    <div x-data="{ filterTab: 'all', openFilters: false }" class="bg-white rounded-3xl border border-outline-variant/60 card-elevation overflow-hidden">
 
         <div class="p-6 border-b border-outline-variant/40 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-surface-container/30">
             <div class="flex items-center gap-2.5">
@@ -109,17 +109,45 @@
                 </div>
             </div>
 
-            <div class="flex flex-wrap gap-1.5 bg-surface-container p-1 rounded-2xl border border-outline-variant/50 w-full sm:w-auto text-xs font-bold">
-                <button @click="filterTab = 'all'" :class="filterTab === 'all' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">الكل ({{ $totalTasks }})</button>
-                <button @click="filterTab = 'high'" :class="filterTab === 'high' ? 'bg-error text-white shadow-sm font-extrabold' : 'text-error hover:bg-error-container/30'" class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 rounded-full bg-current"></span>
-                    <span>الضرورة القصوى ({{ $highTasksTotal }})</span>
+            <div class="relative w-full sm:w-auto">
+                <button @click="openFilters = !openFilters" @click.away="openFilters = false" class="flex items-center gap-2 px-4 py-2 bg-surface-container hover:bg-surface-container-high border border-outline-variant/50 rounded-xl text-xs font-bold text-on-surface transition-all w-full sm:w-auto justify-between sm:justify-start">
+                    <div class="flex items-center gap-2">
+                        <span class="material-symbols-outlined text-[18px] text-primary">filter_list</span>
+                        <span x-text="filterTab === 'all' ? 'الكل ({{ $totalTasks }})' : (filterTab === 'high' ? 'الضرورة القصوى ({{ $highTasksTotal }})' : (filterTab === 'ai' ? 'توليد AI ({{ $aiTasksTotal }})' : (filterTab === 'pending' ? 'قيد التنفيذ' : (filterTab === 'backlog' ? 'الـ Backlog ({{ $backlogTasksTotal }})' : 'تصفية المهام'))))">تصفية المهام</span>
+                    </div>
+                    <span class="material-symbols-outlined text-[16px] transition-transform text-on-surface-variant" :class="openFilters ? 'rotate-180' : ''">keyboard_arrow_down</span>
                 </button>
-                <button @click="filterTab = 'ai'" :class="filterTab === 'ai' ? 'bg-primary text-white shadow-sm' : 'text-primary hover:bg-primary/10'" class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1">
-                    <span class="material-symbols-outlined text-[14px]">auto_awesome</span>
-                    <span>توليد AI ({{ $aiTasksTotal }})</span>
-                </button>
-                <button @click="filterTab = 'pending'" :class="filterTab === 'pending' ? 'bg-white text-on-surface shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">قيد التنفيذ</button>
+                <div x-show="openFilters" x-cloak
+                    x-transition:enter="transition ease-out duration-100"
+                    x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100"
+                    class="absolute left-0 mt-2 w-56 bg-white border border-outline-variant/60 rounded-2xl shadow-xl z-20 py-2 text-right">
+
+                    <button @click="filterTab = 'all'; openFilters = false" :class="filterTab === 'all' ? 'bg-primary/10 text-primary' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'" class="flex items-center gap-2 w-full text-right px-4 py-2.5 text-xs font-bold transition-all">
+                        <span class="material-symbols-outlined text-[16px]">all_inclusive</span>
+                        <span>الكل ({{ $totalTasks }})</span>
+                    </button>
+
+                    <button @click="filterTab = 'high'; openFilters = false" :class="filterTab === 'high' ? 'bg-error-container/40 text-error' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'" class="flex items-center gap-2 w-full text-right px-4 py-2.5 text-xs font-bold transition-all">
+                        <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                        <span>الضرورة القصوى ({{ $highTasksTotal }})</span>
+                    </button>
+
+                    <button @click="filterTab = 'ai'; openFilters = false" :class="filterTab === 'ai' ? 'bg-primary/10 text-primary' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'" class="flex items-center gap-2 w-full text-right px-4 py-2.5 text-xs font-bold transition-all">
+                        <span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+                        <span>توليد AI ({{ $aiTasksTotal }})</span>
+                    </button>
+
+                    <button @click="filterTab = 'pending'; openFilters = false" :class="filterTab === 'pending' ? 'bg-surface-container-high/60 text-on-surface' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'" class="flex items-center gap-2 w-full text-right px-4 py-2.5 text-xs font-bold transition-all">
+                        <span class="material-symbols-outlined text-[16px]">pending_actions</span>
+                        <span>قيد التنفيذ</span>
+                    </button>
+
+                    <button @click="filterTab = 'backlog'; openFilters = false" :class="filterTab === 'backlog' ? 'bg-amber-500/10 text-amber-700' : 'text-on-surface-variant hover:bg-surface-container hover:text-on-surface'" class="flex items-center gap-2 w-full text-right px-4 py-2.5 text-xs font-bold transition-all">
+                        <span class="material-symbols-outlined text-[16px]">inventory_2</span>
+                        <span>الـ Backlog ({{ $backlogTasksTotal }})</span>
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -130,9 +158,10 @@
             $isHigh = ($task->priority ?? 'medium') === 'high';
             $isAi = $task->is_ai_generated ?? false;
             $isPending = ($task->status ?? 'pending') !== 'completed';
+            $isBacklog = is_null($task->sprint_id);
             @endphp
 
-            <div x-show="(filterTab === 'all') || (filterTab === 'high' && {{ $isHigh ? 'true' : 'false' }}) || (filterTab === 'ai' && {{ $isAi ? 'true' : 'false' }}) || (filterTab === 'pending' && {{ $isPending ? 'true' : 'false' }})"
+            <div x-show="(filterTab === 'all') || (filterTab === 'high' && {{ $isHigh ? 'true' : 'false' }}) || (filterTab === 'ai' && {{ $isAi ? 'true' : 'false' }}) || (filterTab === 'pending' && {{ $isPending ? 'true' : 'false' }}) || (filterTab === 'backlog' && {{ $isBacklog ? 'true' : 'false' }})"
                 x-transition:enter="transition ease-out duration-200"
                 class="p-4 sm:p-5 flex items-center justify-between gap-4 hover:bg-surface-container/40 transition-colors group relative">
 
@@ -197,6 +226,9 @@
                     </span>
 
                     <div class="flex items-center gap-1 opacity-100 sm:opacity-0 group-hover:opacity-100 transition-opacity pl-2 border-r border-outline-variant/40">
+                        <a href="{{ route('tasks.show', $task->id) }}" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-xl transition-colors" title="عرض التفاصيل">
+                            <span class="material-symbols-outlined text-[18px]">visibility</span>
+                        </a>
                         <a href="{{ route('tasks.edit', $task->id) }}" class="p-2 text-on-surface-variant hover:text-primary hover:bg-surface-container rounded-xl transition-colors" title="تعديل المهمة">
                             <span class="material-symbols-outlined text-[18px]">edit_square</span>
                         </a>
