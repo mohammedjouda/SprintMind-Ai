@@ -10,7 +10,7 @@
                 <span class="material-symbols-outlined text-[22px]">bolt</span>
             </div>
             <div>
-                <h1 class="text-xl font-black text-on-surface tracking-tight leading-none">TaskMaker</h1>
+                <h1 class="text-xl font-black text-on-surface tracking-tight leading-none">SprintMind</h1>
                 <span class="text-[10px] font-bold px-1.5 py-0.5 bg-primary/10 text-primary rounded-md">AI
                     CO-PILOT</span>
             </div>
@@ -35,20 +35,25 @@
                 {{ auth()->user()->tasks()->count() }}
             </span>
         </a>
-        <a href="{{route('projects')}}"
-            class="flex items-center gap-3.5 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-xl transition-all font-medium">
-            <span class="material-symbols-outlined">folder</span>
+        <a href="{{route('projects.index')}}"
+            class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('projects.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
+            <span class="material-symbols-outlined {{ request()->routeIs('projects.*') ? 'filled text-primary' : '' }}">folder</span>
             <span class="text-sm">المشاريع</span>
         </a>
-        <a href="#"
-            class="flex items-center gap-3.5 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-xl transition-all font-medium">
-            <span class="material-symbols-outlined">auto_awesome</span>
+        <a href="{{ route('sprints.index') }}"
+            class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('sprints.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
+            <span class="material-symbols-outlined {{ request()->routeIs('sprints.*') ? 'filled text-primary' : '' }}">auto_awesome</span>
             <span class="text-sm">السبرنتات الذكية</span>
         </a>
-        <a href="#"
-            class="flex items-center gap-3.5 px-4 py-3 text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60 rounded-xl transition-all font-medium">
-            <span class="material-symbols-outlined">calendar_month</span>
+        <a href="{{ route('calendar.index') }}"
+            class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('calendar.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
+            <span class="material-symbols-outlined {{ request()->routeIs('calendar.*') ? 'filled text-primary' : '' }}">calendar_month</span>
             <span class="text-sm">الجدول الزمني</span>
+        </a>
+        <a href="{{ route('notes.index') }}"
+            class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('notes.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
+            <span class="material-symbols-outlined {{ request()->routeIs('notes.*') ? 'filled text-primary' : '' }}">sticky_note_2</span>
+            <span class="text-sm">ملاحظات العمل</span>
         </a>
     </nav>
 
