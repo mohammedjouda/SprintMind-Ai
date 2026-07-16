@@ -8,12 +8,15 @@ use App\Http\Controllers\SprintController;
 use App\Http\Controllers\AIPromptController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::get('/', [DashboardController::class, 'dashboard'])->name('dashboard');
+    Route::get('/search', [SearchController::class, 'search'])->name('global.search');
 
     Route::post('/ai-prompt/preview', [AIPromptController::class, 'preview'])->name('ai.prompt.preview');
     Route::post('/ai-prompt/save', [AIPromptController::class, 'save'])->name('ai.prompt.save');
@@ -44,8 +47,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/calendar/auto-schedule', [CalendarController::class, 'autoSchedule'])->name('calendar.auto-schedule');
 
 
+    // Notifications Hub
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::get('/notifications/{id}/go', [NotificationController::class, 'readAndGo'])->name('notifications.go');
+    Route::post('/notifications/{id}/read', [NotificationController::class, 'markAsRead'])->name('notifications.markAsRead');
+    Route::post('/notifications/read-all', [NotificationController::class, 'markAllAsRead'])->name('notifications.markAllAsRead');
+    Route::delete('/notifications/{id}', [NotificationController::class, 'destroy'])->name('notifications.destroy');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile/notifications', [ProfileController::class, 'updateNotifications'])->name('profile.notifications.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
