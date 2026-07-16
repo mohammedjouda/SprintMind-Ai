@@ -31,6 +31,9 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'notify_task_assigned_email' => 'boolean',
+            'notify_task_reminder_email' => 'boolean',
+            'notify_sprint_reminder_email' => 'boolean',
         ];
     }
     public function projects()

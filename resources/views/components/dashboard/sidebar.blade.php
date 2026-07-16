@@ -10,7 +10,7 @@
                 <span class="material-symbols-outlined text-[22px]">bolt</span>
             </div>
             <div>
-                <h1 class="text-xl font-black text-on-surface tracking-tight leading-none">SprintMind</h1>
+                <h1 class="text-xl font-black text-on-surface tracking-tight leading-none">SprintMind Ai</h1>
                 <span class="text-[10px] font-bold px-1.5 py-0.5 bg-primary/10 text-primary rounded-md">AI
                     CO-PILOT</span>
             </div>
@@ -54,6 +54,17 @@
             class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('notes.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
             <span class="material-symbols-outlined {{ request()->routeIs('notes.*') ? 'filled text-primary' : '' }}">sticky_note_2</span>
             <span class="text-sm">ملاحظات العمل</span>
+        </a>
+        <a href="{{ route('notifications.index') }}"
+            class="flex items-center gap-3.5 px-4 py-3 {{ request()->routeIs('notifications.*') ? 'text-primary font-bold bg-primary/10' : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container/60' }} rounded-xl transition-all font-medium">
+            <span class="material-symbols-outlined {{ request()->routeIs('notifications.*') ? 'filled text-primary' : '' }}">notifications</span>
+            <span class="text-sm">التنبيهات</span>
+            @php $unreadCount = auth()->user()->unreadNotifications->count(); @endphp
+            @if($unreadCount > 0)
+            <span class="mr-auto bg-error text-white text-[10px] px-2 py-0.5 rounded-full font-bold">
+                {{ $unreadCount }}
+            </span>
+            @endif
         </a>
     </nav>
 

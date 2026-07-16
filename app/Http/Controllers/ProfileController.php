@@ -57,4 +57,19 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    /**
+     * Update the user's notification preferences.
+     */
+    public function updateNotifications(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        $user->notify_task_assigned_email = $request->boolean('notify_task_assigned_email');
+        $user->notify_task_reminder_email = $request->boolean('notify_task_reminder_email');
+        $user->notify_sprint_reminder_email = $request->boolean('notify_sprint_reminder_email');
+        $user->save();
+
+        return Redirect::route('profile.edit')->with('status', 'notification-settings-updated');
+    }
 }

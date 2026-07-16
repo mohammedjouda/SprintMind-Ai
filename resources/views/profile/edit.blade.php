@@ -1,29 +1,42 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+<x-layouts.app title="SprintMind Ai - الملف الشخصي">
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
+    <div class="space-y-6 max-w-4xl mx-auto">
+        <!-- Profile Header -->
+        <div class="bg-white p-6 rounded-3xl border border-outline-variant/60 card-elevation">
+            <h2 class="text-2xl font-black text-on-surface flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-[28px]">manage_accounts</span>
+                إعدادات الحساب الشخصي
+            </h2>
+            <p class="text-on-surface-variant text-xs mt-1">تحديث بياناتك الشخصية، إدارة كلمات المرور وتفضيلات الإشعارات.</p>
+        </div>
+
+        <!-- Update Profile Information -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant/60 card-elevation">
+            <div class="max-w-xl">
+                @include('profile.partials.update-profile-information-form')
             </div>
+        </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
+        <!-- Notification Preferences -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant/60 card-elevation">
+            <div class="max-w-xl">
+                @include('profile.partials.update-notification-settings-form')
             </div>
+        </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
+        <!-- Update Password -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant/60 card-elevation">
+            <div class="max-w-xl">
+                @include('profile.partials.update-password-form')
+            </div>
+        </div>
+
+        <!-- Delete User -->
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-outline-variant/60 card-elevation">
+            <div class="max-w-xl">
+                @include('profile.partials.delete-user-form')
             </div>
         </div>
     </div>
-</x-app-layout>
+
+</x-layouts.app>
