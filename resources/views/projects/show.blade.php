@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - {{ $project->name }}">
+<x-layouts.app title="SprintMind Ai AI - {{ $project->name }}">
 
     <x-slot:headerLeft>
         <a href="{{ route('projects.index') }}" class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant hover:text-primary transition-all">

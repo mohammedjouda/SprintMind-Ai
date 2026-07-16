@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - {{ $task->title }}">
+<x-layouts.app title="SprintMind Ai AI - {{ $task->title }}">
 
     <x-slot:headerLeft>
         <a href="{{ route('projects.show', $task->project_id) }}" class="flex items-center gap-1.5 text-xs font-bold text-on-surface-variant hover:text-primary transition-all font-tajawal">
@@ -24,10 +24,10 @@
     </x-slot:headerRight>
 
     <div class="max-w-3xl mx-auto space-y-6">
-        
+
         <!-- بطاقة تفاصيل المهمة -->
         <div class="bg-white rounded-3xl border border-outline-variant/60 card-elevation p-6 lg:p-8 space-y-6">
-            
+
             <div class="flex flex-wrap justify-between items-center gap-3">
                 <div class="flex items-center gap-2 font-tajawal">
                     @if ($task->status === 'completed')
@@ -124,7 +124,7 @@
                         <span>{{ $task->status === 'completed' ? 'إعادة فتح المهمة (Pending)' : 'تعليم المهمة كمكتملة' }}</span>
                     </button>
                 </form>
-                
+
                 <span class="text-[11px] font-bold text-on-surface-variant font-geist">
                     تاريخ الإنشاء: {{ $task->created_at->format('Y-m-d H:i') }}
                 </span>

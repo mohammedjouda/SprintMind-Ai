@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - لوحة القيادة الذكية">
+<x-layouts.app title="SprintMind Ai AI - لوحة القيادة الذكية">
 
     <div class="space-y-6">
 

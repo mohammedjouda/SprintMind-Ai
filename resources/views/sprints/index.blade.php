@@ -1,4 +1,4 @@
-<x-layouts.app title="SprintMind AI - السبرنتات الذكية">
+<x-layouts.app title="SprintMind Ai - السبرنتات الذكية">
 
     <!-- Toast Notification System Script -->
     <script>
@@ -51,7 +51,7 @@
                     <span class="material-symbols-outlined text-sm">auto_awesome</span>
                     <span>🚀 AI One-Click Sprint Planner</span>
                 </button>
-                
+
                 <button @click="openNewSprint()"
                     class="bg-white border border-outline-variant hover:bg-surface-container/60 text-on-surface font-bold px-4 py-2.5 rounded-2xl text-xs flex items-center gap-2 transition-all">
                     <span class="material-symbols-outlined text-sm">add</span>
@@ -63,9 +63,9 @@
         <!-- Sprints List Grid -->
         <div class="grid grid-cols-1 gap-6">
             @php
-                $activeSprints = $sprints->where('status', 'active');
-                $plannedSprints = $sprints->where('status', 'planned');
-                $completedSprints = $sprints->where('status', 'completed');
+            $activeSprints = $sprints->where('status', 'active');
+            $plannedSprints = $sprints->where('status', 'planned');
+            $completedSprints = $sprints->where('status', 'completed');
             @endphp
 
             <!-- 1. Active Sprints (Highlighted at the top) -->
@@ -75,55 +75,55 @@
                     <span>السبرنت الحالي النشط (Active Sprint)</span>
                 </h3>
                 @if($activeSprints->isEmpty())
-                    <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-6 text-center text-on-surface-variant text-xs">
-                        لا يوجد سبرنت نشط حالياً. استخدم مخطط الذكاء الاصطناعي لبدء سبرنت جديد بنقرة واحدة!
-                    </div>
+                <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-6 text-center text-on-surface-variant text-xs">
+                    لا يوجد سبرنت نشط حالياً. استخدم مخطط الذكاء الاصطناعي لبدء سبرنت جديد بنقرة واحدة!
+                </div>
                 @else
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        @foreach($activeSprints as $sprint)
-                            <div class="bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden group border border-indigo-500/20">
-                                <div class="absolute -left-6 -bottom-6 text-9xl text-white/5 pointer-events-none select-none">
-                                    <span class="material-symbols-outlined text-[150px]">bolt</span>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                    @foreach($activeSprints as $sprint)
+                    <div class="bg-gradient-to-br from-indigo-900 via-slate-900 to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden group border border-indigo-500/20">
+                        <div class="absolute -left-6 -bottom-6 text-9xl text-white/5 pointer-events-none select-none">
+                            <span class="material-symbols-outlined text-[150px]">bolt</span>
+                        </div>
+                        <div class="flex justify-between items-start gap-4">
+                            <div>
+                                <div class="flex items-center gap-2">
+                                    <span class="text-[10px] font-extrabold px-2.5 py-1 bg-emerald-500 text-slate-900 rounded-full">نشط الآن</span>
+                                    <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت النشط؟')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-indigo-200 hover:text-rose-400 transition-all flex items-center">
+                                            <span class="material-symbols-outlined text-[18px]">delete</span>
+                                        </button>
+                                    </form>
                                 </div>
-                                <div class="flex justify-between items-start gap-4">
-                                    <div>
-                                        <div class="flex items-center gap-2">
-                                            <span class="text-[10px] font-extrabold px-2.5 py-1 bg-emerald-500 text-slate-900 rounded-full">نشط الآن</span>
-                                            <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت النشط؟')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-indigo-200 hover:text-rose-400 transition-all flex items-center">
-                                                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                        <h4 class="text-xl font-black mt-2 font-tajawal">{{ $sprint->name }}</h4>
-                                        <p class="text-xs text-indigo-200 mt-1 line-clamp-2">{{ $sprint->goal }}</p>
-                                    </div>
-                                    <a href="{{ route('sprints.show', $sprint->id) }}"
-                                        class="bg-white text-indigo-900 hover:bg-indigo-50 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md transition-all shrink-0">
-                                        <span>لوحة الـ Kanban</span>
-                                        <span class="material-symbols-outlined text-sm">arrow_left</span>
-                                    </a>
-                                </div>
-
-                                <div class="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-4 text-xs">
-                                    <div>
-                                        <span class="text-indigo-300 block">المدى الزمني</span>
-                                        <span class="font-bold text-white">{{ $sprint->start_date?->format('Y-m-d') ?? '-' }} إلى {{ $sprint->end_date?->format('Y-m-d') ?? '-' }}</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-indigo-300 block">السرعة المستهدفة</span>
-                                        <span class="font-bold text-white">{{ $sprint->target_velocity }} نقطة جهود</span>
-                                    </div>
-                                    <div>
-                                        <span class="text-indigo-300 block">المهام الكلية</span>
-                                        <span class="font-bold text-white">{{ $sprint->tasks->count() }} مهام ({{ $sprint->tasks->sum('story_points') }} نقطة)</span>
-                                    </div>
-                                </div>
+                                <h4 class="text-xl font-black mt-2 font-tajawal">{{ $sprint->name }}</h4>
+                                <p class="text-xs text-indigo-200 mt-1 line-clamp-2">{{ $sprint->goal }}</p>
                             </div>
-                        @endforeach
+                            <a href="{{ route('sprints.show', $sprint->id) }}"
+                                class="bg-white text-indigo-900 hover:bg-indigo-50 font-bold px-4 py-2 rounded-xl text-xs flex items-center gap-1.5 shadow-md transition-all shrink-0">
+                                <span>لوحة الـ Kanban</span>
+                                <span class="material-symbols-outlined text-sm">arrow_left</span>
+                            </a>
+                        </div>
+
+                        <div class="mt-6 grid grid-cols-3 gap-4 border-t border-white/10 pt-4 text-xs">
+                            <div>
+                                <span class="text-indigo-300 block">المدى الزمني</span>
+                                <span class="font-bold text-white">{{ $sprint->start_date?->format('Y-m-d') ?? '-' }} إلى {{ $sprint->end_date?->format('Y-m-d') ?? '-' }}</span>
+                            </div>
+                            <div>
+                                <span class="text-indigo-300 block">السرعة المستهدفة</span>
+                                <span class="font-bold text-white">{{ $sprint->target_velocity }} نقطة جهود</span>
+                            </div>
+                            <div>
+                                <span class="text-indigo-300 block">المهام الكلية</span>
+                                <span class="font-bold text-white">{{ $sprint->tasks->count() }} مهام ({{ $sprint->tasks->sum('story_points') }} نقطة)</span>
+                            </div>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
 
@@ -134,40 +134,40 @@
                     <span>سبرنتات مخططة ومجدولة (Planned Sprints)</span>
                 </h3>
                 @if($plannedSprints->isEmpty())
-                    <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-4 text-center text-on-surface-variant text-xs">
-                        لا توجد سبرنتات مخططة.
-                    </div>
+                <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-4 text-center text-on-surface-variant text-xs">
+                    لا توجد سبرنتات مخططة.
+                </div>
                 @else
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        @foreach($plannedSprints as $sprint)
-                            <div class="bg-white border border-outline-variant rounded-2xl p-5 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-md">مخطط</span>
-                                        <div class="flex gap-1">
-                                            <a href="{{ route('sprints.edit', $sprint->id) }}" class="text-on-surface-variant hover:text-primary transition-all">
-                                                <span class="material-symbols-outlined text-[18px]">edit</span>
-                                            </a>
-                                            <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت؟')">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit" class="text-on-surface-variant hover:text-error transition-all">
-                                                    <span class="material-symbols-outlined text-[18px]">delete</span>
-                                                </button>
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <h4 class="text-base font-bold text-on-surface mt-2">{{ $sprint->name }}</h4>
-                                    <p class="text-xs text-on-surface-variant mt-1 line-clamp-2">{{ $sprint->goal ?: 'بدون هدف محدد' }}</p>
-                                </div>
-
-                                <div class="mt-4 pt-3 border-t border-outline-variant/60 flex justify-between items-center text-xs">
-                                    <span class="text-on-surface-variant">الجهد: {{ $sprint->tasks->sum('story_points') }} / {{ $sprint->target_velocity }} Pts</span>
-                                    <a href="{{ route('sprints.show', $sprint->id) }}" class="text-primary font-bold hover:underline">عرض التفاصيل ←</a>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach($plannedSprints as $sprint)
+                    <div class="bg-white border border-outline-variant rounded-2xl p-5 hover:border-primary/40 hover:shadow-md transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-surface-container-high text-on-surface-variant rounded-md">مخطط</span>
+                                <div class="flex gap-1">
+                                    <a href="{{ route('sprints.edit', $sprint->id) }}" class="text-on-surface-variant hover:text-primary transition-all">
+                                        <span class="material-symbols-outlined text-[18px]">edit</span>
+                                    </a>
+                                    <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت؟')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-on-surface-variant hover:text-error transition-all">
+                                            <span class="material-symbols-outlined text-[18px]">delete</span>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
-                        @endforeach
+                            <h4 class="text-base font-bold text-on-surface mt-2">{{ $sprint->name }}</h4>
+                            <p class="text-xs text-on-surface-variant mt-1 line-clamp-2">{{ $sprint->goal ?: 'بدون هدف محدد' }}</p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-outline-variant/60 flex justify-between items-center text-xs">
+                            <span class="text-on-surface-variant">الجهد: {{ $sprint->tasks->sum('story_points') }} / {{ $sprint->target_velocity }} Pts</span>
+                            <a href="{{ route('sprints.show', $sprint->id) }}" class="text-primary font-bold hover:underline">عرض التفاصيل ←</a>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
 
@@ -178,35 +178,35 @@
                     <span>سبرنتات منتهية (Completed Sprints)</span>
                 </h3>
                 @if($completedSprints->isEmpty())
-                    <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-4 text-center text-on-surface-variant text-xs">
-                        لا توجد سبرنتات منتهية سابقاً.
-                    </div>
+                <div class="bg-surface-container-lowest border border-outline-variant/60 rounded-2xl p-4 text-center text-on-surface-variant text-xs">
+                    لا توجد سبرنتات منتهية سابقاً.
+                </div>
                 @else
-                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                        @foreach($completedSprints as $sprint)
-                            <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 opacity-75 hover:opacity-100 transition-all flex flex-col justify-between">
-                                <div>
-                                    <div class="flex justify-between items-start">
-                                        <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-md">منتهي</span>
-                                        <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت المؤرشف؟')">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="text-on-surface-variant hover:text-error transition-all flex items-center">
-                                                <span class="material-symbols-outlined text-[18px]">delete</span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                    <h4 class="text-base font-bold text-on-surface mt-2">{{ $sprint->name }}</h4>
-                                    <p class="text-xs text-on-surface-variant mt-1 line-clamp-2">{{ $sprint->goal }}</p>
-                                </div>
-
-                                <div class="mt-4 pt-3 border-t border-outline-variant/60 flex justify-between items-center text-xs text-on-surface-variant">
-                                    <span>المهام: {{ $sprint->tasks->where('status', 'completed')->count() }} / {{ $sprint->tasks->count() }}</span>
-                                    <a href="{{ route('sprints.show', $sprint->id) }}" class="text-on-surface font-bold hover:underline">عرض الأرشيف ←</a>
-                                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    @foreach($completedSprints as $sprint)
+                    <div class="bg-surface-container-low border border-outline-variant rounded-2xl p-5 opacity-75 hover:opacity-100 transition-all flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-start">
+                                <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-md">منتهي</span>
+                                <form action="{{ route('sprints.destroy', $sprint->id) }}" method="POST" class="inline" onsubmit="return confirm('هل أنت متأكد من حذف السبرنت المؤرشف؟')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-on-surface-variant hover:text-error transition-all flex items-center">
+                                        <span class="material-symbols-outlined text-[18px]">delete</span>
+                                    </button>
+                                </form>
                             </div>
-                        @endforeach
+                            <h4 class="text-base font-bold text-on-surface mt-2">{{ $sprint->name }}</h4>
+                            <p class="text-xs text-on-surface-variant mt-1 line-clamp-2">{{ $sprint->goal }}</p>
+                        </div>
+
+                        <div class="mt-4 pt-3 border-t border-outline-variant/60 flex justify-between items-center text-xs text-on-surface-variant">
+                            <span>المهام: {{ $sprint->tasks->where('status', 'completed')->count() }} / {{ $sprint->tasks->count() }}</span>
+                            <a href="{{ route('sprints.show', $sprint->id) }}" class="text-on-surface font-bold hover:underline">عرض الأرشيف ←</a>
+                        </div>
                     </div>
+                    @endforeach
+                </div>
                 @endif
             </div>
         </div>
@@ -231,7 +231,7 @@
                         <select name="project_id" class="w-full bg-surface-container rounded-xl px-4 py-2.5 text-xs border-0 focus:ring-2 focus:ring-primary">
                             <option value="">بدون مشروع (عام)</option>
                             @foreach($projects as $project)
-                                <option value="{{ $project->id }}">{{ $project->name }}</option>
+                            <option value="{{ $project->id }}">{{ $project->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -296,7 +296,7 @@
                 <!-- Step 1: Input Parameters -->
                 <div x-show="!aiSuggestion" class="space-y-4">
                     <p class="text-xs text-on-surface-variant">يقوم مستشار السكرام بتحليل المهام غير المجدولة في Backlog وجمع حزمة متناسقة ذات قيمة للمطور بناءً على السرعة المستهدفة.</p>
-                    
+
                     <div class="grid grid-cols-2 gap-4">
                         <div>
                             <label class="block text-xs font-bold text-on-surface-variant mb-1">السرعة المستهدفة (Story Points)</label>

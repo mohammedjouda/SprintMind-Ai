@@ -1,54 +1,54 @@
 {{-- <x-guest-layout>
     <form method="POST" action="{{ route('register') }}">
-        @csrf
+@csrf
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+<!-- Name -->
+<div>
+    <x-input-label for="name" :value="__('Name')" />
+    <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+</div>
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<!-- Email Address -->
+<div class="mt-4">
+    <x-input-label for="email" :value="__('Email')" />
+    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+</div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+<!-- Password -->
+<div class="mt-4">
+    <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+    <x-text-input id="password" class="block mt-1 w-full"
+        type="password"
+        name="password"
+        required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+</div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+<!-- Confirm Password -->
+<div class="mt-4">
+    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+    <x-text-input id="password_confirmation" class="block mt-1 w-full"
+        type="password"
+        name="password_confirmation" required autocomplete="new-password" />
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+</div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+<div class="flex items-center justify-end mt-4">
+    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
+        {{ __('Already registered?') }}
+    </a>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
-    </form>
+    <x-primary-button class="ms-4">
+        {{ __('Register') }}
+    </x-primary-button>
+</div>
+</form>
 </x-guest-layout> --}}
 
 <!DOCTYPE html>
@@ -57,7 +57,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>إنشاء حساب جديد | TaskMaker AI</title>
+    <title>إنشاء حساب جديد | SprintMind Ai AI</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link
@@ -155,7 +155,7 @@
                     </div>
                     <div>
                         <span
-                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">TaskMaker</span>
+                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">SprintMind Ai</span>
                         <span class="text-[10px] font-bold text-indigo-300 tracking-wider">AI CO-PILOT WORKSPACE</span>
                     </div>
                 </a>
@@ -225,10 +225,10 @@
                                 class="w-full pr-11 pl-4 py-3 bg-surface-container/40 border {{ $errors->has('name') ? 'border-error ring-1 ring-error/20' : 'border-outline-variant/80' }} rounded-2xl text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-white transition-all font-medium placeholder:text-on-surface-variant/50">
                         </div>
                         @error('name')
-                            <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">error</span>
-                                <span>{{ $message }}</span>
-                            </p>
+                        <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">error</span>
+                            <span>{{ $message }}</span>
+                        </p>
                         @enderror
                     </div>
 
@@ -242,10 +242,10 @@
                                 class="w-full pr-11 pl-4 py-3 bg-surface-container/40 border {{ $errors->has('email') ? 'border-error ring-1 ring-error/20' : 'border-outline-variant/80' }} rounded-2xl text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-white transition-all font-medium placeholder:text-on-surface-variant/50">
                         </div>
                         @error('email')
-                            <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">error</span>
-                                <span>{{ $message }}</span>
-                            </p>
+                        <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">error</span>
+                            <span>{{ $message }}</span>
+                        </p>
                         @enderror
                     </div>
 
@@ -279,10 +279,10 @@
                         </div>
                     </div>
                     @error('password')
-                        <p class="text-xs text-error mt-1 font-bold flex items-center gap-1">
-                            <span class="material-symbols-outlined text-[14px]">error</span>
-                            <span>{{ $message }}</span>
-                        </p>
+                    <p class="text-xs text-error mt-1 font-bold flex items-center gap-1">
+                        <span class="material-symbols-outlined text-[14px]">error</span>
+                        <span>{{ $message }}</span>
+                    </p>
                     @enderror
 
                     <button type="submit"

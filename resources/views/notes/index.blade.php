@@ -1,4 +1,4 @@
-<x-layouts.app title="SprintMind AI - ملاحظات العمل الذكية">
+<x-layouts.app title="SprintMind Ai - ملاحظات العمل الذكية">
 
     <!-- Toast Notification System Script -->
     <script>

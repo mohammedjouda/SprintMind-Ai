@@ -1,4 +1,4 @@
-<x-layouts.app title="SprintMind AI - الجدول الزمني التفاعلي">
+<x-layouts.app title="SprintMind Ai - الجدول الزمني التفاعلي">
 
     <!-- CSRF Token and FullCalendar CDN -->
     <script>
@@ -10,6 +10,7 @@
         .fc {
             font-family: 'Tajawal', sans-serif;
         }
+
         .fc .fc-button-primary {
             background-color: #4f46e5;
             border-color: #4f46e5;
@@ -20,56 +21,69 @@
             transition: all 0.2s;
             text-transform: capitalize;
         }
+
         .fc .fc-button-primary:hover {
             background-color: #4338ca;
             border-color: #4338ca;
             opacity: 0.95;
         }
+
         .fc .fc-button-primary:disabled {
             background-color: #cbd5e1;
             border-color: #cbd5e1;
             color: #475569;
         }
+
         .fc .fc-button-active {
             background-color: #312e81 !important;
             border-color: #312e81 !important;
         }
-        .fc-theme-standard td, .fc-theme-standard th {
+
+        .fc-theme-standard td,
+        .fc-theme-standard th {
             border-color: #f1f5f9 !important;
         }
+
         .fc-theme-standard .fc-scrollgrid {
             border-color: #e2e8f0 !important;
             border-radius: 1.25rem;
             overflow: hidden;
         }
+
         .fc-daygrid-day-frame {
             min-height: 110px;
             transition: background-color 0.2s;
         }
+
         .fc-daygrid-day-number {
             font-weight: 700;
             font-family: 'Geist', sans-serif;
             color: #0f172a;
             font-size: 0.85rem;
         }
+
         .fc-col-header-cell-cushion {
             font-weight: 800;
             color: #475569;
             font-size: 0.85rem;
             padding: 8px 0 !important;
         }
+
         .fc-event {
             background: transparent !important;
             border: none !important;
             padding: 2px 4px !important;
         }
+
         /* Scroller customize */
         .custom-scrollbar::-webkit-scrollbar {
             width: 6px;
         }
+
         .custom-scrollbar::-webkit-scrollbar-track {
             background: transparent;
         }
+
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: #cbd5e1;
             border-radius: 4px;
@@ -107,8 +121,8 @@
             <div class="flex items-center gap-4 text-xs font-bold mb-4 bg-slate-50 p-3 rounded-2xl border border-slate-100">
                 <span class="text-on-surface-variant">مؤشر سعة اليوم (Daily Capacity):</span>
                 <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-emerald-100 border border-emerald-300"></span> مثالي (<= 5)</span>
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-amber-100 border border-amber-300"></span> شبه ممتلئ (6-8)</span>
-                <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-100 border border-rose-300"></span> محمل بكثرة (> 8)</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-amber-100 border border-amber-300"></span> شبه ممتلئ (6-8)</span>
+                        <span class="flex items-center gap-1.5"><span class="w-3 h-3 rounded-md bg-rose-100 border border-rose-300"></span> محمل بكثرة (> 8)</span>
             </div>
 
             <!-- FullCalendar placeholder -->
@@ -128,11 +142,10 @@
             <!-- Draggable elements container -->
             <div id="external-events" class="flex-1 overflow-y-auto custom-scrollbar pr-1">
                 <template x-for="task in backlogTasks" :key="task.id">
-                    <div 
+                    <div
                         :class="getBacklogClass(task.priority)"
                         class="fc-event-backlog p-3.5 rounded-2xl border mb-3 cursor-grab hover:shadow-md transition-all active:cursor-grabbing text-slate-800"
-                        :data-task="JSON.stringify(task)"
-                    >
+                        :data-task="JSON.stringify(task)">
                         <div class="flex items-center justify-between mb-1.5">
                             <span class="text-[9px] font-extrabold text-slate-400 truncate max-w-[120px]" x-text="task.project ? task.project.name : 'بدون مشروع'"></span>
                             <span :class="getDotClass(task.priority)" class="h-2 w-2 rounded-full"></span>
@@ -198,7 +211,9 @@
                             return {
                                 id: task.id,
                                 title: task.title,
-                                duration: { days: 1 },
+                                duration: {
+                                    days: 1
+                                },
                                 allDay: true,
                                 extendedProps: {
                                     priority: task.priority,
@@ -275,7 +290,9 @@
                                     </div>
                                 </div>
                             `;
-                            return { html: html };
+                            return {
+                                html: html
+                            };
                         },
 
                         // Drag/drop from external backlog
@@ -330,40 +347,40 @@
                 handleReschedule(info) {
                     const eventDates = this.getEventDates(info.event);
                     fetch(`/calendar/reschedule/${info.event.id}`, {
-                        method: 'POST', // Use POST to ensure reliable transmission
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json',
-                            'X-CSRF-TOKEN': window.csrfToken
-                        },
-                        body: JSON.stringify({
-                            _method: 'PATCH', // Laravel Method Spoofing
-                            start_date: eventDates.start_date,
-                            due_date: eventDates.due_date
+                            method: 'POST', // Use POST to ensure reliable transmission
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': window.csrfToken
+                            },
+                            body: JSON.stringify({
+                                _method: 'PATCH', // Laravel Method Spoofing
+                                start_date: eventDates.start_date,
+                                due_date: eventDates.due_date
+                            })
                         })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.success) {
-                            this.backlogTasks = this.backlogTasks.filter(t => t.id != info.event.id);
-                            this.updateDailyCapacity();
-                        } else {
-                            alert(data.error || 'فشلت عملية إعادة الجدولة.');
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.success) {
+                                this.backlogTasks = this.backlogTasks.filter(t => t.id != info.event.id);
+                                this.updateDailyCapacity();
+                            } else {
+                                alert(data.error || 'فشلت عملية إعادة الجدولة.');
+                                if (info.revert) {
+                                    info.revert();
+                                } else {
+                                    info.event.remove();
+                                }
+                            }
+                        })
+                        .catch(err => {
+                            console.error(err);
                             if (info.revert) {
                                 info.revert();
                             } else {
                                 info.event.remove();
                             }
-                        }
-                    })
-                    .catch(err => {
-                        console.error(err);
-                        if (info.revert) {
-                            info.revert();
-                        } else {
-                            info.event.remove();
-                        }
-                    });
+                        });
                 },
 
                 updateDailyCapacity() {
@@ -433,33 +450,35 @@
                 runAutoSchedule() {
                     this.isLoadingAI = true;
                     fetch('/calendar/auto-schedule', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': window.csrfToken
-                        },
-                        body: JSON.stringify({ start_date: this.aiStartDate })
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        this.isLoadingAI = false;
-                        if (data.success) {
-                            if (data.count > 0) {
-                                this.calendar.refetchEvents();
-                                this.fetchUnscheduled();
-                                alert(`تمت الجدولة بنجاح! تم توزيع ${data.count} مهام بنجاح.`);
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'X-CSRF-TOKEN': window.csrfToken
+                            },
+                            body: JSON.stringify({
+                                start_date: this.aiStartDate
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            this.isLoadingAI = false;
+                            if (data.success) {
+                                if (data.count > 0) {
+                                    this.calendar.refetchEvents();
+                                    this.fetchUnscheduled();
+                                    alert(`تمت الجدولة بنجاح! تم توزيع ${data.count} مهام بنجاح.`);
+                                } else {
+                                    alert(data.message || 'لا توجد مهام إضافية لجدولتها.');
+                                }
                             } else {
-                                alert(data.message || 'لا توجد مهام إضافية لجدولتها.');
+                                alert(`خطأ: ${data.error || 'فشلت عملية الجدولة التلقائية.'}`);
                             }
-                        } else {
-                            alert(`خطأ: ${data.error || 'فشلت عملية الجدولة التلقائية.'}`);
-                        }
-                    })
-                    .catch(err => {
-                        this.isLoadingAI = false;
-                        console.error(err);
-                        alert('فشلت عملية الجدولة التلقائية بسبب خطأ في الشبكة.');
-                    });
+                        })
+                        .catch(err => {
+                            this.isLoadingAI = false;
+                            console.error(err);
+                            alert('فشلت عملية الجدولة التلقائية بسبب خطأ في الشبكة.');
+                        });
                 },
 
                 getBacklogClass(priority) {

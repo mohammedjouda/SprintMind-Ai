@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - إدارة المشاريع">
+<x-layouts.app title="SprintMind Ai AI - إدارة المشاريع">
 
     <x-slot:headerLeft>
         <div class="relative w-48 sm:w-72">

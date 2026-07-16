@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - المهام">
+<x-layouts.app title="SprintMind Ai AI - المهام">
 
     <div class="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 mb-6">
         <div>

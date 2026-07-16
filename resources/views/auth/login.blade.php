@@ -3,47 +3,47 @@
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
     <form method="POST" action="{{ route('login') }}">
-        @csrf
+@csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+<!-- Email Address -->
+<div>
+    <x-input-label for="email" :value="__('Email')" />
+    <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+</div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+<!-- Password -->
+<div class="mt-4">
+    <x-input-label for="password" :value="__('Password')" />
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
+    <x-text-input id="password" class="block mt-1 w-full"
+        type="password"
+        name="password"
+        required autocomplete="current-password" />
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+</div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
-        </div>
+<!-- Remember Me -->
+<div class="block mt-4">
+    <label for="remember_me" class="inline-flex items-center">
+        <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
+        <span class="ms-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
+    </label>
+</div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
+<div class="flex items-center justify-end mt-4">
+    @if (Route::has('password.request'))
+    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+        {{ __('Forgot your password?') }}
+    </a>
+    @endif
 
-            <x-primary-button class="ms-3">
-                {{ __('Log in') }}
-            </x-primary-button>
-        </div>
-    </form>
+    <x-primary-button class="ms-3">
+        {{ __('Log in') }}
+    </x-primary-button>
+</div>
+</form>
 </x-guest-layout> --}}
 
 
@@ -53,7 +53,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>تسجيل الدخول | TaskMaker AI</title>
+    <title>تسجيل الدخول | SprintMind Ai AI</title>
     <!-- استدعاء Tailwind CSS و Alpine.js -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -159,7 +159,7 @@
                     </div>
                     <div>
                         <span
-                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">TaskMaker</span>
+                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">SprintMind Ai</span>
                         <span class="text-[10px] font-bold text-indigo-300 tracking-wider">AI CO-PILOT WORKSPACE</span>
                     </div>
                 </a>
@@ -234,11 +234,11 @@
 
                 <!-- رسالة الحالة (مثل: تم إرسال رابط استعادة كلمة المرور بنجاح) -->
                 @if (session('status'))
-                    <div
-                        class="bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-xs font-bold flex items-center gap-2 animate-fade-in">
-                        <span class="material-symbols-outlined text-emerald-600 text-[20px]">check_circle</span>
-                        <span>{{ session('status') }}</span>
-                    </div>
+                <div
+                    class="bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-xs font-bold flex items-center gap-2 animate-fade-in">
+                    <span class="material-symbols-outlined text-emerald-600 text-[20px]">check_circle</span>
+                    <span>{{ session('status') }}</span>
+                </div>
                 @endif
 
                 <!-- نموذج لارافل الرئيسي -->
@@ -256,10 +256,10 @@
                                 class="w-full pr-11 pl-4 py-3.5 bg-surface-container/40 border {{ $errors->has('email') ? 'border-error ring-1 ring-error/20' : 'border-outline-variant/80' }} rounded-2xl text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-white transition-all font-medium placeholder:text-on-surface-variant/50">
                         </div>
                         @error('email')
-                            <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">error</span>
-                                <span>{{ $message }}</span>
-                            </p>
+                        <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">error</span>
+                            <span>{{ $message }}</span>
+                        </p>
                         @enderror
                     </div>
 
@@ -268,9 +268,9 @@
                         <div class="flex items-center justify-between mb-1.5">
                             <label class="block text-xs font-extrabold text-on-surface">كلمة المرور</label>
                             @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}"
-                                    class="text-xs text-primary hover:underline font-bold transition-colors">نسيت كلمة
-                                    المرور؟</a>
+                            <a href="{{ route('password.request') }}"
+                                class="text-xs text-primary hover:underline font-bold transition-colors">نسيت كلمة
+                                المرور؟</a>
                             @endif
                         </div>
                         <div class="relative">
@@ -289,10 +289,10 @@
                             </button>
                         </div>
                         @error('password')
-                            <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">error</span>
-                                <span>{{ $message }}</span>
-                            </p>
+                        <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">error</span>
+                            <span>{{ $message }}</span>
+                        </p>
                         @enderror
                     </div>
 
@@ -357,17 +357,17 @@
                     <p class="text-xs text-on-surface-variant font-medium">
                         ليس لديك حساب حتى الآن؟
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}"
-                                class="text-primary font-extrabold hover:underline ml-1 inline-flex items-center gap-0.5">
-                                <span>أنشئ حساباً مجانياً</span>
-                                <span class="material-symbols-outlined text-[14px]">arrow_back_ios</span>
-                            </a>
+                        <a href="{{ route('register') }}"
+                            class="text-primary font-extrabold hover:underline ml-1 inline-flex items-center gap-0.5">
+                            <span>أنشئ حساباً مجانياً</span>
+                            <span class="material-symbols-outlined text-[14px]">arrow_back_ios</span>
+                        </a>
                         @else
-                            <a href="{{ url('/register') }}"
-                                class="text-primary font-extrabold hover:underline ml-1 inline-flex items-center gap-0.5">
-                                <span>أنشئ حساباً مجانياً</span>
-                                <span class="material-symbols-outlined text-[14px]">arrow_back_ios</span>
-                            </a>
+                        <a href="{{ url('/register') }}"
+                            class="text-primary font-extrabold hover:underline ml-1 inline-flex items-center gap-0.5">
+                            <span>أنشئ حساباً مجانياً</span>
+                            <span class="material-symbols-outlined text-[14px]">arrow_back_ios</span>
+                        </a>
                         @endif
                     </p>
                 </div>

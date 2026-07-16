@@ -1,4 +1,4 @@
-<x-layouts.app title="TaskMaker AI - تعديل المهمة">
+<x-layouts.app title="SprintMind Ai AI - تعديل المهمة">
     <div x-data="{ priority: '{{ old('priority', $task->priority) }}', status: '{{ old('status', $task->status) }}', projectId: '{{ old('project_id', $task->project_id) }}', sprintId: '{{ old('sprint_id', $task->sprint_id) }}' }">
         <!-- الهيدر الداخلي -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">

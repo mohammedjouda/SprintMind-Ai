@@ -1,4 +1,4 @@
-@props(['title' => 'SprintMind AI - مساحة العمل الذكية'])
+@props(['title' => 'SprintMind Ai - مساحة العمل الذكية'])
 
 <!DOCTYPE html>
 <html class="light" lang="ar" dir="rtl">

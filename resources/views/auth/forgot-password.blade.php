@@ -1,27 +1,27 @@
 {{-- <x-guest-layout>
     <div class="mb-4 text-sm text-gray-600">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+</div>
+
+<!-- Session Status -->
+<x-auth-session-status class="mb-4" :status="session('status')" />
+
+<form method="POST" action="{{ route('password.email') }}">
+    @csrf
+
+    <!-- Email Address -->
+    <div>
+        <x-input-label for="email" :value="__('Email')" />
+        <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
     </div>
 
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
-
-    <form method="POST" action="{{ route('password.email') }}">
-        @csrf
-
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
-
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
-            </x-primary-button>
-        </div>
-    </form>
+    <div class="flex items-center justify-end mt-4">
+        <x-primary-button>
+            {{ __('Email Password Reset Link') }}
+        </x-primary-button>
+    </div>
+</form>
 </x-guest-layout> --}}
 
 <!DOCTYPE html>
@@ -30,7 +30,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>استعادة كلمة المرور | TaskMaker AI</title>
+    <title>استعادة كلمة المرور | SprintMind Ai AI</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link
@@ -123,7 +123,7 @@
                     </div>
                     <div>
                         <span
-                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">TaskMaker</span>
+                            class="text-2xl font-black tracking-tight leading-none text-white block font-geist">SprintMind Ai</span>
                         <span class="text-[10px] font-bold text-indigo-300 tracking-wider">AI CO-PILOT WORKSPACE</span>
                     </div>
                 </a>
@@ -166,14 +166,14 @@
                 </div>
 
                 @if (session('status'))
-                    <div
-                        class="bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-xs font-bold flex items-center gap-2.5 shadow-sm animate-fade-in">
-                        <span class="material-symbols-outlined text-emerald-600 text-[22px]">mark_email_read</span>
-                        <div class="leading-tight">
-                            <p class="font-extrabold mb-0.5">تفقد صندوق الوارد!</p>
-                            <p class="text-emerald-700/90 font-medium">{{ session('status') }}</p>
-                        </div>
+                <div
+                    class="bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-2xl p-4 text-xs font-bold flex items-center gap-2.5 shadow-sm animate-fade-in">
+                    <span class="material-symbols-outlined text-emerald-600 text-[22px]">mark_email_read</span>
+                    <div class="leading-tight">
+                        <p class="font-extrabold mb-0.5">تفقد صندوق الوارد!</p>
+                        <p class="text-emerald-700/90 font-medium">{{ session('status') }}</p>
                     </div>
+                </div>
                 @endif
 
                 <form action="{{ route('password.email') }}" method="POST" class="space-y-5">
@@ -188,10 +188,10 @@
                                 class="w-full pr-11 pl-4 py-3.5 bg-surface-container/40 border {{ $errors->has('email') ? 'border-error ring-1 ring-error/20' : 'border-outline-variant/80' }} rounded-2xl text-sm text-on-surface focus:outline-none focus:border-primary focus:bg-white transition-all font-medium placeholder:text-on-surface-variant/50">
                         </div>
                         @error('email')
-                            <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">error</span>
-                                <span>{{ $message }}</span>
-                            </p>
+                        <p class="text-xs text-error mt-1.5 font-bold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-[14px]">error</span>
+                            <span>{{ $message }}</span>
+                        </p>
                         @enderror
                     </div>
 

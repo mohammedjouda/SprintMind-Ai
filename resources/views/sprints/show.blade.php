@@ -1,4 +1,4 @@
-<x-layouts.app :title="'SprintMind AI - ' . $sprint->name">
+<x-layouts.app :title="'SprintMind Ai - ' . $sprint->name">
 
     <!-- Toast Notification System Script -->
     <script>
@@ -42,7 +42,7 @@
                     </span>
                 </h2>
                 @if($sprint->goal)
-                    <p class="text-xs text-on-surface-variant mt-1.5 font-tajawal bg-surface-container/30 px-3 py-1.5 rounded-xl border border-outline-variant/40 inline-block">🎯 الهدف: {{ $sprint->goal }}</p>
+                <p class="text-xs text-on-surface-variant mt-1.5 font-tajawal bg-surface-container/30 px-3 py-1.5 rounded-xl border border-outline-variant/40 inline-block">🎯 الهدف: {{ $sprint->goal }}</p>
                 @endif
             </div>
 
@@ -99,27 +99,27 @@
 
         <!-- 4-Column Drag-and-Drop Kanban Board -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-start select-none">
-            
+
             <!-- Column template macro -->
             <!-- 1. TO DO -->
             <div class="bg-surface-container/60 rounded-3xl p-4 border border-outline-variant/60 flex flex-col min-h-[500px]"
-                 @dragover.prevent
-                 @drop="dropCard('todo')">
+                @dragover.prevent
+                @drop="dropCard('todo')">
                 <div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/40 shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-slate-500 text-sm">assignment</span>
                         <h3 class="text-xs font-black text-on-surface">قيد الانتظار</h3>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 bg-slate-200 text-slate-800 rounded-full" 
-                          x-text="getCardsCount('todo')"></span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 bg-slate-200 text-slate-800 rounded-full"
+                        x-text="getCardsCount('todo')"></span>
                 </div>
-                
+
                 <div class="flex-1 space-y-2.5 overflow-y-auto">
                     <template x-for="task in getCards('todo')" :key="task.id">
                         <div class="bg-white p-4 rounded-2xl border border-outline-variant/60 shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 hover:shadow transition-all"
-                             draggable="true"
-                             @dragstart="dragCard(task.id)">
-                            
+                            draggable="true"
+                            @dragstart="dragCard(task.id)">
+
                             <div class="flex justify-between items-start gap-2">
                                 <div class="flex items-center gap-1.5">
                                     <span :class="{
@@ -133,7 +133,7 @@
                             </div>
 
                             <h4 class="text-xs font-black text-on-surface mt-2.5 leading-relaxed" x-text="task.title"></h4>
-                            
+
                             <template x-if="task.description">
                                 <p class="text-[11px] text-on-surface-variant mt-1.5 line-clamp-2" x-text="task.description"></p>
                             </template>
@@ -144,23 +144,23 @@
 
             <!-- 2. IN PROGRESS -->
             <div class="bg-surface-container/60 rounded-3xl p-4 border border-outline-variant/60 flex flex-col min-h-[500px]"
-                 @dragover.prevent
-                 @drop="dropCard('in_progress')">
+                @dragover.prevent
+                @drop="dropCard('in_progress')">
                 <div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/40 shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-amber-500 text-sm animate-spin-slow">bolt</span>
                         <h3 class="text-xs font-black text-on-surface">قيد العمل</h3>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full" 
-                          x-text="getCardsCount('in_progress')"></span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 bg-amber-100 text-amber-800 rounded-full"
+                        x-text="getCardsCount('in_progress')"></span>
                 </div>
-                
+
                 <div class="flex-1 space-y-2.5 overflow-y-auto">
                     <template x-for="task in getCards('in_progress')" :key="task.id">
                         <div class="bg-white p-4 rounded-2xl border border-outline-variant/60 shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 hover:shadow transition-all"
-                             draggable="true"
-                             @dragstart="dragCard(task.id)">
-                            
+                            draggable="true"
+                            @dragstart="dragCard(task.id)">
+
                             <div class="flex justify-between items-start gap-2">
                                 <div class="flex items-center gap-1.5">
                                     <span :class="{
@@ -174,7 +174,7 @@
                             </div>
 
                             <h4 class="text-xs font-black text-on-surface mt-2.5 leading-relaxed" x-text="task.title"></h4>
-                            
+
                             <template x-if="task.description">
                                 <p class="text-[11px] text-on-surface-variant mt-1.5 line-clamp-2" x-text="task.description"></p>
                             </template>
@@ -185,23 +185,23 @@
 
             <!-- 3. CODE REVIEW -->
             <div class="bg-surface-container/60 rounded-3xl p-4 border border-outline-variant/60 flex flex-col min-h-[500px]"
-                 @dragover.prevent
-                 @drop="dropCard('review')">
+                @dragover.prevent
+                @drop="dropCard('review')">
                 <div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/40 shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-indigo-500 text-sm">pageview</span>
                         <h3 class="text-xs font-black text-on-surface">مراجعة الكود</h3>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-full" 
-                          x-text="getCardsCount('review')"></span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 bg-indigo-100 text-indigo-800 rounded-full"
+                        x-text="getCardsCount('review')"></span>
                 </div>
-                
+
                 <div class="flex-1 space-y-2.5 overflow-y-auto">
                     <template x-for="task in getCards('review')" :key="task.id">
                         <div class="bg-white p-4 rounded-2xl border border-outline-variant/60 shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 hover:shadow transition-all"
-                             draggable="true"
-                             @dragstart="dragCard(task.id)">
-                            
+                            draggable="true"
+                            @dragstart="dragCard(task.id)">
+
                             <div class="flex justify-between items-start gap-2">
                                 <div class="flex items-center gap-1.5">
                                     <span :class="{
@@ -215,7 +215,7 @@
                             </div>
 
                             <h4 class="text-xs font-black text-on-surface mt-2.5 leading-relaxed" x-text="task.title"></h4>
-                            
+
                             <template x-if="task.description">
                                 <p class="text-[11px] text-on-surface-variant mt-1.5 line-clamp-2" x-text="task.description"></p>
                             </template>
@@ -226,23 +226,23 @@
 
             <!-- 4. DONE / COMPLETED -->
             <div class="bg-surface-container/60 rounded-3xl p-4 border border-outline-variant/60 flex flex-col min-h-[500px]"
-                 @dragover.prevent
-                 @drop="dropCard('completed')">
+                @dragover.prevent
+                @drop="dropCard('completed')">
                 <div class="flex justify-between items-center mb-4 pb-2 border-b border-outline-variant/40 shrink-0">
                     <div class="flex items-center gap-2">
                         <span class="material-symbols-outlined text-emerald-500 text-sm">check_circle</span>
                         <h3 class="text-xs font-black text-on-surface">مكتمل</h3>
                     </div>
-                    <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full" 
-                          x-text="getCardsCount('completed')"></span>
+                    <span class="text-[10px] font-bold px-2 py-0.5 bg-emerald-100 text-emerald-800 rounded-full"
+                        x-text="getCardsCount('completed')"></span>
                 </div>
-                
+
                 <div class="flex-1 space-y-2.5 overflow-y-auto">
                     <template x-for="task in getCards('completed')" :key="task.id">
                         <div class="bg-white p-4 rounded-2xl border border-outline-variant/60 shadow-sm cursor-grab active:cursor-grabbing hover:border-primary/50 hover:shadow transition-all opacity-80"
-                             draggable="true"
-                             @dragstart="dragCard(task.id)">
-                            
+                            draggable="true"
+                            @dragstart="dragCard(task.id)">
+
                             <div class="flex justify-between items-start gap-2">
                                 <div class="flex items-center gap-1.5">
                                     <span :class="{
@@ -256,7 +256,7 @@
                             </div>
 
                             <h4 class="text-xs font-black text-on-surface mt-2.5 leading-relaxed line-through decoration-slate-400" x-text="task.title"></h4>
-                            
+
                             <template x-if="task.description">
                                 <p class="text-[11px] text-on-surface-variant mt-1.5 line-clamp-2" x-text="task.description"></p>
                             </template>
@@ -272,19 +272,39 @@
     <!-- Custom blinking animations -->
     <style>
         @keyframes pulseSlow {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(0.99); }
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 0.9;
+                transform: scale(0.99);
+            }
         }
+
         .animate-pulse-slow {
             animation: pulseSlow 3s infinite ease-in-out;
         }
+
         @keyframes bounceSubtle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-3px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-3px);
+            }
         }
+
         .animate-bounce-subtle {
             animation: bounceSubtle 4s infinite ease-in-out;
         }
+
         .animate-spin-slow {
             animation: spin 8s infinite linear;
         }
