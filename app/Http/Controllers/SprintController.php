@@ -157,7 +157,7 @@ class SprintController extends Controller
         if ($unscheduledTasks->isEmpty()) {
             return response()->json([
                 'success' => false,
-                'message' => 'يبدو أن قائمة المهام (Backlog) فارغة حالياً! أضف بعض المهام أولاً لتتمكن من تخطيط السبرنت بالذكاء الاصطناعي. ✨',
+                'message' => 'يبدو أن قائمة المهام (Backlog) فارغة حالياً! أضف بعض المهام أولاً لتتمكن من تخطيط السبرنت بالذكاء الاصطناعي. ',
             ], 422);
         }
 

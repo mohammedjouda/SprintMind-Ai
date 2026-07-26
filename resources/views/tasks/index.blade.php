@@ -85,7 +85,7 @@
                 </div>
                 <div class="flex items-baseline gap-2 mb-1">
                     <h3 class="text-3xl font-black font-geist text-white">{{ $aiTasksTotal }} <span class="text-sm font-normal text-indigo-200">مهام AI</span></h3>
-                    <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-400/30">✨ خوارزمية ذكية</span>
+                    <span class="text-xs font-bold text-emerald-300 bg-emerald-500/20 px-2 py-0.5 rounded-full border border-emerald-400/30"> خوارزمية ذكية</span>
                 </div>
                 <p class="text-xs text-indigo-100/80 font-medium leading-relaxed">قام الـ AI بتفكيك هذه المهام وتقدير <span class="font-bold text-white">{{ $storyPointsBurned ?? 0 }} نقطة جهد (Story Pt)</span> في سبرنتاتك.</p>
             </div>

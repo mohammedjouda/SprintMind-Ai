@@ -170,7 +170,7 @@
                 <div class="space-y-2">
                     <span
                         class="text-[11px] font-extrabold px-3 py-1 bg-white/10 text-indigo-200 rounded-full inline-block backdrop-blur-md border border-white/10">
-                        ✨ عودة سريعة للإنتاجية
+                        عودة سريعة للإنتاجية
                     </span>
                     <h2 class="text-2xl lg:text-3xl font-black leading-tight text-white">
                         مرحباً بك مجدداً في <br>
@@ -227,7 +227,7 @@
 
                 <!-- الترحيب ورأس النموذج -->
                 <div>
-                    <h1 class="text-2xl sm:text-3xl font-black text-on-surface mb-1.5">تسجيل الدخول لحسابك 👋</h1>
+                    <h1 class="text-2xl sm:text-3xl font-black text-on-surface mb-1.5">تسجيل الدخول لحسابك </h1>
                     <p class="text-on-surface-variant text-xs sm:text-sm font-medium">أدخل البريد الإلكتروني وكلمة
                         المرور للمتابعة إلى لوحة التحكم</p>
                 </div>

@@ -40,7 +40,7 @@
                 <button @click="filterCategory = 'all'" :class="filterCategory === 'all' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">الكل</button>
                 <button @click="filterCategory = 'software'" :class="filterCategory === 'software' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">💻 تطوير برمجيات</button>
                 <button @click="filterCategory = 'marketing'" :class="filterCategory === 'marketing' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">📈 تسويق ومحتوى</button>
-                <button @click="filterCategory = 'personal'" :class="filterCategory === 'personal' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all">🎯 مشاريع شخصية</button>
+                <button @click="filterCategory = 'personal'" :class="filterCategory === 'personal' ? 'bg-white text-primary shadow-sm' : 'text-on-surface-variant hover:text-on-surface'" class="px-3.5 py-1.5 rounded-xl transition-all"> مشاريع شخصية</button>
             </div>
         </div>
 
@@ -114,7 +114,7 @@
                             </span>
                             <span class="text-[11px] text-on-surface-variant">باقي 4 أيام</span>
                         </div>
-                        <p class="text-[11px] text-on-surface-variant truncate font-medium">🎯 الهدف: ربط بوابات الدفع وإصدار الفواتير التلقائية</p>
+                        <p class="text-[11px] text-on-surface-variant truncate font-medium"> الهدف: ربط بوابات الدفع وإصدار الفواتير التلقائية</p>
                     </div>
                 </div>
 
@@ -171,7 +171,7 @@
                             </span>
                             <span class="text-[11px] text-on-surface-variant">باقي 6 أيام</span>
                         </div>
-                        <p class="text-[11px] text-on-surface-variant truncate font-medium">🎯 الهدف: تأسيس جداول الصلاحيات وواجهات المستخدم</p>
+                        <p class="text-[11px] text-on-surface-variant truncate font-medium"> الهدف: تأسيس جداول الصلاحيات وواجهات المستخدم</p>
                     </div>
                 </div>
 
@@ -228,7 +228,7 @@
                             </span>
                             <span class="text-[11px] text-on-surface-variant">يبدأ قريباً</span>
                         </div>
-                        <p class="text-[11px] text-on-surface-variant truncate font-medium">🎯 الهدف: كتابة السكربتات وتصميم الكاروسيل</p>
+                        <p class="text-[11px] text-on-surface-variant truncate font-medium"> الهدف: كتابة السكربتات وتصميم الكاروسيل</p>
                     </div>
                 </div>
 

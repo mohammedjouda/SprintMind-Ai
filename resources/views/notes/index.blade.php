@@ -40,7 +40,7 @@
             <div>
                 <div class="flex items-center gap-2 mb-1">
                     <span class="bg-primary-container text-on-primary-container text-[11px] font-extrabold px-2.5 py-0.5 rounded-full">مركز الأفكار والملاحظات (Notes Hub)</span>
-                    <span class="text-xs text-on-surface-variant">✨ حول أفكارك إلى مهام فورية بالذكاء الاصطناعي</span>
+                    <span class="text-xs text-on-surface-variant"> حول أفكارك إلى مهام فورية بالذكاء الاصطناعي</span>
                 </div>
                 <h2 class="text-2xl lg:text-3xl font-black text-on-surface font-tajawal">ملاحظات العمل والتحليل الذكي</h2>
                 <p class="text-sm text-on-surface-variant mt-1">اكتب أفكارك وملاحظاتك بصيغة Markdown، وقم باستخراج المهام Agile Backlog مع مراجعتها وتعديلها يدوياً.</p>
@@ -243,7 +243,7 @@
                             class="bg-gradient-to-r from-indigo-900 via-primary to-indigo-800 text-white font-bold px-4 py-2 rounded-xl text-xs shadow-lg shadow-primary/10 flex items-center gap-2 transition-all disabled:opacity-50">
                             <span x-show="!aiLoading" class="material-symbols-outlined text-[16px] text-emerald-400 animate-pulse">auto_awesome</span>
                             <span x-show="aiLoading" class="border-2 border-white border-t-transparent rounded-full w-4 h-4 animate-spin"></span>
-                            <span x-text="aiLoading ? 'جاري التحليل...' : '✨ حول أفكارك إلى مهام فورية بالذكاء الاصطناعي'"></span>
+                            <span x-text="aiLoading ? 'جاري التحليل...' : ' حول أفكارك إلى مهام فورية بالذكاء الاصطناعي'"></span>
                         </button>
                     </div>
 

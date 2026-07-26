@@ -133,7 +133,7 @@
     <!-- ================= شاشة المراجعة والتعديل (Review Tailwind CSS Modal) ================= -->
     <div x-show="showModal" x-cloak class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 sm:p-6" x-transition>
         <div @click.away="showModal = false" class="bg-white w-full max-w-4xl rounded-3xl border border-outline-variant/60 shadow-2xl flex flex-col max-h-[90vh] overflow-hidden animate-fadeIn">
-            
+
             <!-- رأس المودال -->
             <div class="p-6 border-b border-outline-variant/40 flex items-center justify-between shrink-0 bg-surface-container/30">
                 <button @click="showModal = false" type="button" class="text-on-surface-variant hover:text-on-surface p-1 rounded-xl hover:bg-surface-container-high transition-colors">
@@ -152,7 +152,7 @@
 
             <!-- محتوى المودال (قابل للتمرير) -->
             <div class="p-6 overflow-y-auto space-y-6 flex-1 text-right" dir="rtl">
-                
+
                 <!-- تفاصيل المشروع الأساسية وقسم السبرنت -->
                 <div class="bg-surface-container/30 p-5 rounded-3xl border border-outline-variant/40 space-y-4">
                     <h3 class="font-bold text-sm text-on-surface flex items-center gap-2">
@@ -172,7 +172,7 @@
                                 class="w-full px-4 py-3 bg-white border border-outline-variant/80 rounded-2xl text-xs font-bold focus:outline-none focus:border-primary transition-all">
                                 <option value="software">💻 تطوير البرمجيات</option>
                                 <option value="marketing">📈 تسويق ومحتوى</option>
-                                <option value="personal">🎯 مشاريع شخصية</option>
+                                <option value="personal"> مشاريع شخصية</option>
                             </select>
                         </div>
                         <div class="sm:col-span-1">
@@ -208,7 +208,7 @@
                         <template x-if="previewData && previewData.tasks">
                             <template x-for="(task, tIndex) in previewData.tasks" :key="tIndex">
                                 <div class="p-5 rounded-3xl border border-outline-variant/60 bg-white hover:border-primary/30 transition-all relative group space-y-4">
-                                    
+
                                     <!-- زر الحذف للمهمة -->
                                     <button @click="removeTask(tIndex)" type="button"
                                         class="absolute left-4 top-4 text-on-surface-variant hover:text-error hover:bg-error/5 p-1.5 rounded-lg transition-colors">

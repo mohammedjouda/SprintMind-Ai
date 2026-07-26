@@ -25,7 +25,7 @@
         }
     </script>
 
-    <div x-data="kanbanWorkspace()" x-init="fetchHealth()" class="space-y-6">
+    <div x-data="kanbanWorkspace(@js($sprint->tasks))" x-init="fetchHealth()" class="space-y-6">
 
         <!-- Breadcrumb / Header -->
         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -42,7 +42,7 @@
                     </span>
                 </h2>
                 @if($sprint->goal)
-                <p class="text-xs text-on-surface-variant mt-1.5 font-tajawal bg-surface-container/30 px-3 py-1.5 rounded-xl border border-outline-variant/40 inline-block">🎯 الهدف: {{ $sprint->goal }}</p>
+                <p class="text-xs text-on-surface-variant mt-1.5 font-tajawal bg-surface-container/30 px-3 py-1.5 rounded-xl border border-outline-variant/40 inline-block"> الهدف: {{ $sprint->goal }}</p>
                 @endif
             </div>
 
@@ -69,7 +69,7 @@
                 <div class="flex items-center gap-3">
                     <!-- Dynamic status badge/emoji -->
                     <span x-show="health.health_status === 'healthy'" class="flex items-center gap-1 bg-emerald-50 text-emerald-700 text-[10px] font-black px-2.5 py-1 rounded-full shrink-0 border border-emerald-200/60">
-                        <span>🎯 مميز</span>
+                        <span> مميز</span>
                     </span>
                     <span x-show="health.health_status === 'warning'" class="flex items-center gap-1 bg-amber-50 text-amber-700 text-[10px] font-black px-2.5 py-1 rounded-full shrink-0 border border-amber-200/60 animate-pulse-slow">
                         <span>⏱️ انتبه للوقت</span>
@@ -311,9 +311,9 @@
     </style>
 
     <script>
-        function kanbanWorkspace() {
+        function kanbanWorkspace(initialTasks) {
             return {
-                tasks: @json($sprint->tasks),
+                tasks: initialTasks,
                 draggedId: null,
                 health: null,
                 healthLoading: false,

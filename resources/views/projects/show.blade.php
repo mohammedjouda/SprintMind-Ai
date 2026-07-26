@@ -172,7 +172,7 @@
                                 {{ $sprintStatusTexts[$sprint->status] ?? $sprint->status }}
                             </span>
                         </div>
-                        <p class="text-xs text-on-surface-variant font-medium">🎯 الهدف العام: {{ $sprint->goal }}</p>
+                        <p class="text-xs text-on-surface-variant font-medium"> الهدف العام: {{ $sprint->goal }}</p>
                     </div>
 
                     <div class="flex items-center gap-4 shrink-0 text-xs font-bold text-on-surface-variant">

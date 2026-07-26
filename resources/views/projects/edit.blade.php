@@ -35,7 +35,7 @@
                         <select :name="categoryMode === 'select' ? 'category' : ''" @change="if ($event.target.value === 'custom') { categoryMode = 'input' }" class="w-full px-4 py-3 bg-surface-container/40 border border-outline-variant/80 rounded-2xl text-xs font-bold transition-all">
                             <option value="software" {{ $project->category === 'software' ? 'selected' : '' }}>💻 Software Development</option>
                             <option value="marketing" {{ $project->category === 'marketing' ? 'selected' : '' }}>📈 Marketing & Content</option>
-                            <option value="personal" {{ $project->category === 'personal' ? 'selected' : '' }}>🎯 Personal Projects</option>
+                            <option value="personal" {{ $project->category === 'personal' ? 'selected' : '' }}> Personal Projects</option>
                             <option value="custom">✍️ تصنيف مخصص...</option>
                         </select>
                     </div>

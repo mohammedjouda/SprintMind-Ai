@@ -224,7 +224,7 @@
                             <span class="text-[11px] text-on-surface-variant">باقي {{ now()->diffInDays($activeSprint->end_date) }} يوم</span>
                             @endif
                         </div>
-                        <p class="text-[11px] text-on-surface-variant truncate font-medium">🎯 الهدف: {{ $activeSprint->goal }}</p>
+                        <p class="text-[11px] text-on-surface-variant truncate font-medium"> الهدف: {{ $activeSprint->goal }}</p>
                     </div>
                     @else
                     <div class="bg-surface-container/30 rounded-2xl p-3.5 border border-dashed border-outline-variant/40 mb-6 text-center">

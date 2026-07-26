@@ -26,7 +26,7 @@
                     <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
                     بيئة العمل الذكية تعمل بكفاءة
                 </span>
-                <h2 class="text-2xl lg:text-3xl font-black">مرحباً بك مجدداً، {{ Auth::user()->name ?? 'محمد' }} 👋</h2>
+                <h2 class="text-2xl lg:text-3xl font-black">مرحباً بك مجدداً، {{ Auth::user()->name ?? 'محمد' }} </h2>
                 <p class="text-indigo-200 text-sm mt-1 max-w-xl leading-relaxed">إليك ملخص سريع لما يحدث في مساحة عملك اليوم. استخدم المساعد الذكي لتفكيك مهامك المعقدة.</p>
             </div>
 
@@ -90,12 +90,16 @@
         <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
 
             <!-- قائمة المهام العاجلة (Critical Tasks) -->
-            <section class="md:col-span-8 bg-white p-6 rounded-3xl card-elevation border border-outline-variant/60 flex flex-col justify-between">
+            <section class="md:col-span-8 bg-white p-6 rounded-3xl card-elevation border border-outline-variant/60 border-r-4 border-r-rose-400 flex flex-col justify-between bg-gradient-to-l from-rose-500/[0.015] to-transparent shadow-sm shadow-rose-500/5">
                 <div>
                     <div class="flex justify-between items-center mb-6">
-                        <div class="flex items-center gap-2">
-                            <span class="material-symbols-outlined text-error">priority_high</span>
+                        <div class="flex items-center gap-2.5">
+                            <div class="w-1.5 h-6 bg-rose-400 rounded-full"></div>
                             <h3 class="font-extrabold text-lg text-on-surface">المهام ذات الأولوية القصوى الجارية</h3>
+                            <span class="bg-rose-500/10 text-rose-500 text-[10px] font-black px-2.5 py-0.5 rounded-full inline-flex items-center gap-1 animate-pulse border border-rose-500/10">
+                                <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                عاجل وهام
+                            </span>
                         </div>
                         <a href="{{ route('tasks.index') }}" class="text-primary font-bold text-xs hover:underline flex items-center gap-1">
                             <span>عرض الكل</span>
@@ -105,15 +109,15 @@
 
                     <div class="space-y-3">
                         @forelse($tasks as $task)
-                        <div class="flex items-center p-4 rounded-2xl border border-outline-variant/60 hover:border-primary/40 hover:shadow-md transition-all group bg-white">
+                        <div class="flex items-center p-4 rounded-2xl border border-outline-variant/60 hover:border-rose-300 hover:shadow-md hover:-translate-x-0.5 transition-all group bg-white">
                             <form action="{{ route('tasks.toggle', $task->id) }}" method="POST" class="mr-4 ml-4">
                                 @csrf @method('PATCH')
-                                <input type="checkbox" onChange="this.form.submit()" {{ $task->status === 'completed' ? 'checked' : '' }} class="w-5 h-5 rounded-md text-primary focus:ring-primary border-outline-variant cursor-pointer">
+                                <input type="checkbox" onChange="this.form.submit()" {{ $task->status === 'completed' ? 'checked' : '' }} class="w-5 h-5 rounded-md text-rose-500 focus:ring-rose-500/20 border-outline-variant cursor-pointer transition-colors">
                             </form>
 
                             <div class="flex-1 text-right">
                                 <div class="flex items-center gap-2 flex-wrap">
-                                    <a href="{{ route('tasks.show', $task->id) }}" class="text-sm font-bold {{ $task->status === 'completed' ? 'line-through text-on-surface-variant' : 'text-on-surface' }} hover:text-primary transition-colors">
+                                    <a href="{{ route('tasks.show', $task->id) }}" class="text-sm font-bold {{ $task->status === 'completed' ? 'line-through text-on-surface-variant' : 'text-on-surface' }} group-hover:text-rose-500 transition-colors">
                                         {{ $task->title }}
                                     </a>
                                     @if($task->is_ai_generated)
@@ -149,10 +153,10 @@
                             </div>
 
                             <div class="flex items-center gap-3">
-                                <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border {{ $task->status === 'pending' ? 'bg-amber-50 text-amber-700 border-amber-200' : '' }} {{ $task->status === 'in_progress' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' : '' }} {{ $task->status === 'completed' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : '' }}">
-                                    {{ str_replace('_', ' ', $task->status) }}
+                                <span class="text-[11px] font-bold px-2.5 py-1 rounded-full border {{ $task->status === 'pending' || $task->status === 'todo' ? 'bg-amber-50 text-amber-700 border-amber-200' : '' }} {{ $task->status === 'in_progress' ? 'bg-indigo-50 text-indigo-700 border-indigo-200' : '' }} {{ $task->status === 'completed' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' : '' }}">
+                                    {{ $task->status === 'pending' || $task->status === 'todo' ? 'قيد الانتظار' : ($task->status === 'in_progress' ? 'قيد التنفيذ' : 'مكتمل') }}
                                 </span>
-                                <a href="{{ route('tasks.edit', $task->id) }}" class="text-on-surface-variant hover:text-primary p-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                                <a href="{{ route('tasks.edit', $task->id) }}" class="text-on-surface-variant hover:text-rose-500 p-1.5 rounded-lg hover:bg-rose-50 transition-colors">
                                     <span class="material-symbols-outlined text-[18px]">edit_square</span>
                                 </a>
                             </div>
